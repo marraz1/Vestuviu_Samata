@@ -13,8 +13,8 @@ const links = [
   ['/nustatymai', lt.nav.settings],
 ] as const;
 
-// Bottom bar shows the 4 most used screens on phones; desktop gets a sidebar.
-const mobile = new Set(['/', '/islaidos', '/mokejimai', '/nustatymai']);
+// Bottom bar shows the 5 most used screens on phones; desktop gets a sidebar.
+const mobile = new Set(['/', '/islaidos', '/kategorijos', '/mokejimai', '/nustatymai']);
 
 function linkClass({ isActive }: { isActive: boolean }) {
   return `block rounded-md px-3 py-2 text-sm ${isActive ? 'bg-teal-700 text-white' : 'text-stone-700 hover:bg-stone-200'}`;
@@ -31,14 +31,14 @@ export function Layout() {
           ))}
         </ul>
       </nav>
-      <main className="mx-auto w-full max-w-5xl px-4 pb-24 pt-6 md:pb-6">
+      <main className="mx-auto w-full max-w-5xl px-4 pb-[calc(7rem+env(safe-area-inset-bottom))] pt-[max(1.5rem,env(safe-area-inset-top))] md:pb-6">
         <Outlet />
       </main>
-      <nav aria-label="Greitas meniu" className="fixed inset-x-0 bottom-0 border-t border-stone-200 bg-white md:hidden">
-        <ul className="grid grid-cols-4">
+      <nav aria-label="Greitas meniu" className="fixed inset-x-0 bottom-0 z-20 border-t border-stone-200 bg-white pb-[env(safe-area-inset-bottom)] md:hidden">
+        <ul className="grid grid-cols-5">
           {links.filter(([to]) => mobile.has(to)).map(([to, label]) => (
             <li key={to}>
-              <NavLink to={to} end={to === '/'} className={({ isActive }) => `block py-3 text-center text-xs ${isActive ? 'font-semibold text-teal-800' : 'text-stone-600'}`}>
+              <NavLink to={to} end={to === '/'} className={({ isActive }) => `block px-1 py-3 text-center text-[11px] leading-tight ${isActive ? 'font-semibold text-teal-800' : 'text-stone-600'}`}>
                 {label}
               </NavLink>
             </li>

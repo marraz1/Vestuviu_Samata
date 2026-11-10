@@ -9,7 +9,9 @@
     "preview": "vite preview",
     "test": "vitest run",
     "typecheck": "tsc -b",
-    "test:db": "node db/test-rls.mjs"
+    "test:db": "node db/test-rls.mjs",
+    "test:api": "node e2e/api-live.mjs",
+    "test:ui": "node e2e/ui-smoke.cjs"
   },
   "dependencies": {
     "@tanstack/react-query": "^5.62.0",
