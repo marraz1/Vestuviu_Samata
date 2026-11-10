@@ -19,8 +19,21 @@ cp .env.example .env.local   # fill in the Neon URLs
 npm run dev
 npm test                     # domain unit tests
 npm run test:db              # migrations + RLS checks on an in-memory Postgres
+npm run test:api             # live checks against Neon Auth + Data API
+npm run test:ui              # browser smoke test at 360px (needs `vite preview` on :4173)
 npm run build
 ```
+
+## What works now (MVP)
+
+- Sign-up, login, password reset by email (Neon Auth, email + password)
+- Creating a wedding: date, guest count, budget; the 22 categories are added automatically
+- **Pradžia:** budget, forecast, contracted, paid, remaining; days left; warnings; upcoming payments
+- **Išlaidos:** search, filters, sorting; quick add "+" (title, category, amount)
+- **Expense card:** pricing (fixed, per guest, per hour, per unit, per table), VAT, fees, contracted amount, status, notes, payment schedule, private notes (couple only), delete with undo, a warning when someone else saved first
+- **Kategorijos:** limits as an amount or a %, usage bars
+- **Mokėjimai:** monthly calendar up to the wedding
+- **Nustatymai:** wedding data, guest count (forecasts recalculate), reserve %, JSON export, delete all data, accepting invitations (`#/kvietimas/<token>`)
 
 ## Database
 
