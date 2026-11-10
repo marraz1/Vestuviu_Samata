@@ -37,7 +37,7 @@ SQL migrations live in `db/migrations/` and are applied in order to the Neon dat
 ## Deploying to GitHub Pages
 
 1. Repo Settings → Pages → Source: **GitHub Actions**.
-2. Settings → Variables → Actions: add `VITE_NEON_AUTH_URL` and `VITE_NEON_DATA_API_URL`.
+2. The Neon URLs are built into the workflow. To point at another project, set the repo variables `VITE_NEON_AUTH_URL` and `VITE_NEON_DATA_API_URL`.
 3. Every push to `main` builds, tests and publishes (`.github/workflows/deploy.yml`).
 
 Pages on a private repo needs a paid GitHub plan. The code contains no secrets, so the repo can be public.

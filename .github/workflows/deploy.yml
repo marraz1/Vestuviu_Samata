@@ -26,9 +26,10 @@ jobs:
       - run: npm ci
       - run: npm test
       - run: npm run build
+        # Public Neon URLs (not secrets). Repo variables, if set, override them.
         env:
-          VITE_NEON_AUTH_URL: ${{ vars.VITE_NEON_AUTH_URL }}
-          VITE_NEON_DATA_API_URL: ${{ vars.VITE_NEON_DATA_API_URL }}
+          VITE_NEON_AUTH_URL: ${{ vars.VITE_NEON_AUTH_URL || 'https://ep-billowing-mouse-b9xp0rz8.neonauth.c-7.eu-central-1.aws.neon.tech/neondb/auth' }}
+          VITE_NEON_DATA_API_URL: ${{ vars.VITE_NEON_DATA_API_URL || 'https://ep-billowing-mouse-b9xp0rz8.apirest.c-7.eu-central-1.aws.neon.tech/neondb/rest/v1' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist
