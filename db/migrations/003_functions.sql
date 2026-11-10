@@ -1,8 +1,8 @@
 -- 003: RPCs (called through the Data API as /rpc/<name>) and the audit trigger.
 
--- JWT email claim, used to match invitations
+-- JWT email claim (pg_session_jwt), used to match invitations
 create or replace function auth_email() returns text language sql stable as $$
-  select lower(coalesce(current_setting('request.jwt.claims', true)::json ->> 'email', ''))
+  select lower(coalesce(auth.jwt() ->> 'email', ''))
 $$;
 
 -- Creates a wedding, makes the caller the owner and seeds categories + funding sources

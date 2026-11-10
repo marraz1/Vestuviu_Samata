@@ -4,7 +4,7 @@ import { PGlite } from '@electric-sql/pglite';
 import fs from 'fs';
 const db = new PGlite();
 const dir = new URL('./migrations/', import.meta.url).pathname;
-await db.exec(`create schema auth; create function auth.user_id() returns text language sql stable as $$ select nullif(current_setting('app.uid', true), '') $$;`);
+await db.exec(`create schema auth; create function auth.user_id() returns text language sql stable as $$ select nullif(current_setting('app.uid', true), '') $$; create function auth.jwt() returns jsonb language sql stable as $$ select nullif(current_setting('request.jwt.claims', true), '')::jsonb $$;`);
 for (const f of fs.readdirSync(dir).sort()) { await db.exec(fs.readFileSync(dir + f, 'utf8')); console.log('ok', f); }
 await db.exec(`create role app; grant usage on schema public, auth to app; grant all on all tables in schema public to app; grant execute on all functions in schema public to app;`);
 const as = async (uid, email, sql) => {

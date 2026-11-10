@@ -24,6 +24,8 @@ npm run build
 
 ## Database
 
+Neon project **vestuviu-samata** (`raspy-fog-31716452`, Frankfurt, Postgres 18), branch `main`. Neon Auth is email + password only. Allowed origins: `https://marraz1.github.io` and localhost. Migrations 001–003 are applied.
+
 SQL migrations live in `db/migrations/` and are applied in order to the Neon database:
 
 | File | Contents |
